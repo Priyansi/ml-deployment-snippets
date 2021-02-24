@@ -2,7 +2,7 @@ import requests
 import json
 import base64
 
-with open("test_image_dog.jpg", "rb") as image_file:
+with open("test_image.jpg", "rb") as image_file:
     base64str = base64.b64encode(image_file.read()).decode("utf-8")
 
 payload = json.dumps({
