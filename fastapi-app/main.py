@@ -15,13 +15,13 @@ class Input(BaseModel):
 def base64str_to_PILImage(base64str):
     base64_img_bytes = base64str.encode('utf-8')
     base64bytes = base64.b64decode(base64_img_bytes)
-    bytesObj = io.BytesIO(base64bytes)
-    img = Image.open(bytesObj)
+    bytes_obj = io.BytesIO(base64bytes)
+    img = Image.open(bytes_obj)
     return img
 
 
 @app.put("/predict")
-def get_predictionbase64(d: Input):
-    img = base64str_to_PILImage(d.base64str)
+def get_predictionbase64(inp_obj: Input):
+    img = base64str_to_PILImage(inp_obj.base64str)
     pred = get_prediction(img)
     return {'category': pred}
